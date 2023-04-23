@@ -19,6 +19,6 @@ class YoutubeVideoCollection extends ResourceCollection
             'links' => [
                 'next' => 'link-value',
             ],
-        ];;
+        ];
     }
 }

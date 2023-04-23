@@ -14,7 +14,7 @@ class YoutubeService
      */
     protected $baseUrl = 'https://www.googleapis.com/youtube/v3';
 
-    public function searchVideos(string $regionCode = null, string $pageToken = null) : array
+    public function searchVideos(string $regionCode = null) : array
     {
         $response = Http::get($this->baseUrl.'/search'.implode([
                 '?key='.env('YOUTUBE_API_KEY'),
@@ -22,8 +22,7 @@ class YoutubeService
                 '&type=video',
                 '$chart=mostPopulair',
                 '&maxResults=3',
-                '&regionCode=' . $regionCode,
-                '&pageToken=' . $pageToken,
+                '&regionCode=' . $regionCode
             ])
         );
 
@@ -36,11 +35,6 @@ class YoutubeService
         if (!isset($data['items'])) {
             return null;
         }
-
-        // Ok I know this is hacky but for now I couldnt find any other way of adding pagination using youtube.
-        // I've spend too much time out finding how. 0.0
-        $data['items'][0]['nextPageToken'] = $data['nextPageToken'];
-        $data['items'][0]['previousPageToken'] = $pageToken;
 
         return YoutubeVideo::collection($data['items'])->resolve();
     }

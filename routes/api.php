@@ -15,7 +15,7 @@ use App\Http\Controllers\VideoController;
 */
 
 // List top videos by country
-Route::get('/videos/{countryId}/{pageToken?}', [VideoController::class, 'getTopVideosByCountry']);
+Route::get('/videos/{countryId}', [VideoController::class, 'getTopVideosByCountry']);
 
 // List top videos
-Route::get('/videos/{pageToken?}', [VideoController::class, 'getTopVideos']);
+Route::get('/videos', [VideoController::class, 'getTopVideos']);

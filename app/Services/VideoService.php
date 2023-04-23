@@ -16,7 +16,7 @@ class VideoService
         $this->wikipediaService = $wikipediaService;
     }
 
-    public function getAllVideos($pageToken): array
+    public function getAllVideos(): array
     {
         $videos = [];
 
@@ -24,20 +24,20 @@ class VideoService
             //todo: can make this into a resource too (video).
             array_push($videos, [
                 'country_info' => $this->wikipediaService->getFirstParagraphByCountry($countryEnum->value),
-                'video' => $this->youtubeService->searchVideos($countryEnum->key, $pageToken)
+                'video' => $this->youtubeService->searchVideos($countryEnum->key)
             ]);
         }
 
         return $videos;
     }
 
-    public function getVideosByCountry($country, $pageToken): array
+    public function getVideosByCountry($country): array
     {
         $countryEnum = Country::fromValue($country);
 
         return [
             'country_info' => $this->wikipediaService->getFirstParagraphByCountry($countryEnum->value),
-            'video' => $this->youtubeService->searchVideos($countryEnum->key, $pageToken)
+            'video' => $this->youtubeService->searchVideos($countryEnum->key)
         ];
     }
 }
