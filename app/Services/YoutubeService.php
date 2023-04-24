@@ -14,14 +14,15 @@ class YoutubeService
      */
     protected $baseUrl = 'https://www.googleapis.com/youtube/v3';
 
-    public function searchVideos(string $regionCode = null) : array
+    public function searchVideos(string $regionCode = null): array
     {
-        $response = Http::get($this->baseUrl.'/search'.implode([
-                '?key='.env('YOUTUBE_API_KEY'),
+        $response = Http::get(
+            $this->baseUrl . '/search' . implode([
+                '?key=' . env('YOUTUBE_API_KEY'),
                 '&part=snippet',
                 '&type=video',
                 '$chart=mostPopulair',
-                '&maxResults=3',
+                '&maxResults=10',
                 '&regionCode=' . $regionCode
             ])
         );

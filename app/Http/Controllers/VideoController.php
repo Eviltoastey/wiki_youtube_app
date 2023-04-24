@@ -13,11 +13,13 @@ class VideoController extends Controller
         $this->videoService = $videoService;
     }
 
-    public function getTopVideos() {
+    public function getTopVideos()
+    {
         return json_encode($this->videoService->getAllVideos());
     }
 
-    public function getTopVideosByCountry($countryId) {
+    public function getTopVideosByCountry($countryId)
+    {
         return json_encode($this->videoService->getVideosByCountry($countryId));
     }
 }
