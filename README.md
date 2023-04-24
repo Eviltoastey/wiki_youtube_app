@@ -16,12 +16,16 @@ to set this project up easily yourself you can install DDEV as well.
 2. pull this project
 3. go to the root folder of this project
 4. run ddev start
-5. run ddev launch
+5. use the .env.example and fill it in.
+6. in the .env file set YOUTUBE_API_KEY to your own API key
+7. run ddev launch
 
 if it doesnt launch try to do a composer install. If it doesnt launch after that there is probably somthing wrong with the DDEV installation. Contact me for more info.
 
 If you decide not to use ddev then follow these steps:
 1. php artisan serve --port=8080 
+2. use the .env.example and fill it in.
+3. in the .env file set YOUTUBE_API_KEY to your own API key
 
 Because this project doesnt use a database or any other services you can just run it like that! But yeah I wanted to Dockerize the project.
 
